@@ -39,7 +39,7 @@
     Image
   </dt>
   <dd>
-    <%= @the_director.image %>
+    <img src="http://robohash.org/<%= @the_director.image %>">
   </dd>
 
   <dt>
@@ -63,85 +63,57 @@
 
 <table border="1">
   <tr>
-    <th>
-      ID
-    </th>
+      <th>
+        ID
+      </th>
 
-    <th>
-      Image
-    </th>
+      <th>
+        Image
+      </th>
 
-    <th>
-      Title
-    </th>
+      <th>
+        Title
+      </th>
 
-    <th>
-      Year
-    </th>
+      <th>
+        Year
+      </th>
 
-    <th>
-      Director
-    </th>
+      <th>
+        Director
+      </th>
 
-    <th>
-    </th>
-  </tr>
+      <th>
+      </th>
+    </tr>
+  <% @filmography.each do |data| %>
+    <tr>
+      <td>
+        <%= data.id %>
+      </td>
 
-  <tr>
-    <td>
-      4
-    </td>
+      <td>
+        <img src="http://robohash.org/<%= data.image %>">
+      </td>
 
-    <td>
-      <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" style="width:250px;">
-    </td>
+      <td>
+        <%= data.title %>
+      </td>
 
-    <td>
-      The Dark Knight
-    </td>
+      <td>
+        <%= data.year %>
+      </td>
 
-    <td>
-      2008
-    </td>
+      <td>
+        <% director = Director.where({ :id => data.director_id }).at(0) %>
+        <%= director.name %>
+      </td>
 
-    <td>
-      Christopher Nolan
-    </td>
-
-    <td>
-      <a href="/movies/4">
-        Show details
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      13
-    </td>
-
-    <td>
-      <img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg" style="width:250px;">
-    </td>
-
-    <td>
-      Inception
-    </td>
-
-    <td>
-      2010
-    </td>
-
-    <td>
-      Christopher Nolan
-    </td>
-
-    <td>
-      <a href="/movies/13">
-        Show details
-      </a>
-    </td>
-  </tr>
+      <td>
+        <a href="/movies/<%= data.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
 </table>
-
-  </body>
-</html>
