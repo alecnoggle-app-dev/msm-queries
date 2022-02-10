@@ -84,33 +84,33 @@
       <th>
       </th>
     </tr>
-  <% @filmography.each do |data| %>
+  <% @characters.each do |character| %>
     <tr>
       <td>
-        <% character = Character.where({ :id => data.movie_id }).at(0) %>
-        <% movie = Movie.where({ :id => character.movie_id }).at(0) %>
+        <% movie_id = character.movie_id %>
+        <% movie = Movie.where({ :id => movie_id }).at(0) %>
         <%= movie.title %>
       </td>
 
       <td>
-        <% character = Character.where({ :id => data.movie_id }).at(0) %>
-        <% movie = Movie.where({ :id => character.movie_id }).at(0) %>
+        <% movie_id = character.movie_id %>
+        <% movie = Movie.where({ :id => movie_id }).at(0) %>
         <%= movie.year %>
       </td>
 
       <td>
-        <% character = Character.where({ :id => data.movie_id }).at(0) %>
-        <% movie = Movie.where({ :id => character.movie_id }).at(0) %>
+        <% movie_id = character.movie_id %>
+        <% movie = Movie.where({ :id => movie_id }).at(0) %>
         <% director = Director.where({ :id => movie.director_id }).at(0) %>
         <%= director.name %>
       </td>
 
       <td>
-        <%= data.name %>
+        <%= character.name %>
       </td>
 
       <td>
-        <a href="/movies/<%= data.id %>">
+        <a href="/movies/<%= movie_id %>">
           Show details
         </a>
       </td>
